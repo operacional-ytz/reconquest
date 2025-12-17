@@ -9,11 +9,13 @@
                 console.log("SmartPlayer encontrado!");
 
                 player.on("smartplayer:scroll", function() {
-                    console.log("Evento smartplayer:scroll disparado!");
-                    document.querySelectorAll(".smartplayer-scroll-event").forEach(function(btn) {
-                        btn.classList.add("show");
-                        console.log("Classe 'show' adicionada ao botão");
-                    });
+                    console.log("Evento smartplayer:scroll disparado! Botão aparecerá em 1 segundo...");
+                    setTimeout(function() {
+                        document.querySelectorAll(".smartplayer-scroll-event").forEach(function(btn) {
+                            btn.classList.add("show");
+                            console.log("Classe 'show' adicionada ao botão");
+                        });
+                    }, 1000);
                 });
 
                 console.log("Listener configurado para smartplayer:scroll");
