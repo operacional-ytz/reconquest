@@ -11,9 +11,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 (function() {
   var checkPlayer = setInterval(function() {
     var player = document.getElementById('vid-6943034a387adf5a89eca7b2');
-    if (player && typeof player.addEventListener === 'function') {
+    if (player && player.smartplayer) {
       clearInterval(checkPlayer);
-      player.addEventListener('play', function() {
+      player.smartplayer.on('scrollActive', function() {
         setTimeout(function() {
           var ctaContainer = document.getElementById('cta-container');
           if (ctaContainer) {
