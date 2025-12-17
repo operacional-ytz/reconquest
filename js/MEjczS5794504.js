@@ -4,21 +4,32 @@
     const checkPlayer = setInterval(function() {
         if (window.smartplayer && window.smartplayer.instances) {
             const player = window.smartplayer.instances["vid-6943034a387adf5a89eca7b2"];
-            if (player) {
+            if (player && player.on) {
                 clearInterval(checkPlayer);
-                console.log("SmartPlayer encontrado!");
+                console.log("SmartPlayer encontrado! Configurando listeners...");
 
-                player.on("smartplayer:scroll", function() {
-                    console.log("Evento smartplayer:scroll disparado! Botão aparecerá em 1 segundo...");
-                    setTimeout(function() {
-                        document.querySelectorAll(".smartplayer-scroll-event").forEach(function(btn) {
-                            btn.classList.add("show");
-                            console.log("Classe 'show' adicionada ao botão");
-                        });
-                    }, 1000);
+                const eventNames = [
+                    "smartplayer:scroll",
+                    "scroll",
+                    "timeupdate",
+                    "smartAutoWebinarShow"
+                ];
+
+                eventNames.forEach(function(eventName) {
+                    player.on(eventName, function(data) {
+                        console.log("Evento '" + eventName + "' disparado!", data);
+                        if (eventName === "smartAutoWebinarShow" || eventName === "scroll" || eventName === "smartplayer:scroll") {
+                            setTimeout(function() {
+                                document.querySelectorAll(".smartplayer-scroll-event").forEach(function(btn) {
+                                    btn.classList.add("show");
+                                    console.log("Botão exibido!");
+                                });
+                            }, 1000);
+                        }
+                    });
                 });
 
-                console.log("Listener configurado para smartplayer:scroll");
+                console.log("Todos os listeners configurados. Aguardando eventos...");
             }
         }
     }, 100);
