@@ -17,43 +17,17 @@
     }
 
     function initSmartPlayerListener() {
-        var attempts = 0;
-        var maxAttempts = 100;
-
         var checkInterval = setInterval(function() {
-            attempts++;
-
             if (window.smartplayer && window.smartplayer.instances) {
                 var player = window.smartplayer.instances["vid-6943034a387adf5a89eca7b2"];
 
-                if (player) {
+                if (player && typeof player.on === "function") {
                     clearInterval(checkInterval);
 
-                    if (typeof player.on === "function") {
-                        player.on("smartAutoWebinarShow", function() {
-                            showCTAButton();
-                        });
-
-                        player.on("timeupdate", function() {
-                            if (player.video && player.video.currentTime > 10) {
-                                showCTAButton();
-                            }
-                        });
-                    }
-
-                    setTimeout(function() {
-                        if (!buttonShown) {
-                            showCTAButton();
-                        }
-                    }, 15000);
+                    player.on("smartAutoWebinarShow", function() {
+                        showCTAButton();
+                    });
                 }
-            }
-
-            if (attempts >= maxAttempts) {
-                clearInterval(checkInterval);
-                setTimeout(function() {
-                    showCTAButton();
-                }, 5000);
             }
         }, 100);
     }
