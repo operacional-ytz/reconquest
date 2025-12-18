@@ -27,6 +27,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
   }
 
+  setTimeout(function() {
+    console.log('[CTA] 10 segundos decorridos, mostrando botão automaticamente');
+    showCTA();
+  }, 10000);
+
   window.smartPlayerReadyCallback = function(player) {
     console.log('[CTA] Player pronto, configurando listeners');
 
