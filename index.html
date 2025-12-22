@@ -9,97 +9,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 (function() {
   var ctaShown = false;
 
-  console.log('[VTURB] Inicializando sistema de eventos...');
-
   function showCTA() {
     if (ctaShown) return;
     ctaShown = true;
 
-    console.log('[VTURB] Exibindo oferta!');
     var ctaElement = document.querySelector('.dtc');
     if (ctaElement) {
       ctaElement.classList.add('show');
-      console.log('[VTURB] Oferta exibida com sucesso');
-
-      setTimeout(function() {
-        var scrollTarget = document.querySelector('.smartplayer-scroll-event');
-        if (scrollTarget) {
-          scrollTarget.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center'
-          });
-        }
-      }, 300);
     }
   }
 
-  function setupEventListeners() {
-    var player = document.querySelector('#vid-6943034a387adf5a89eca7b2');
+  setTimeout(function() {
+    showCTA();
+  }, 1528000);
 
-    if (player) {
-      console.log('[VTURB] Player encontrado, configurando listeners...');
-
-      var events = [
-        'smartplayer:callaction',
-        'smartplayer:cta',
-        'call-action',
-        'callAction',
-        'cta',
-        'button',
-        'action'
-      ];
-
-      events.forEach(function(eventName) {
-        player.addEventListener(eventName, function(e) {
-          console.log('[VTURB] Evento capturado:', eventName, e);
-          showCTA();
-        });
+  document.addEventListener('DOMContentLoaded', function() {
+    var ctaButton = document.getElementById('cta-button');
+    if (ctaButton) {
+      var currentUrl = new URL(ctaButton.href);
+      var pageParams = new URLSearchParams(window.location.search);
+      pageParams.forEach(function(value, key) {
+        currentUrl.searchParams.set(key, value);
       });
-
-      console.log('[VTURB] Listeners configurados');
-    } else {
-      console.log('[VTURB] Player não encontrado ainda, tentando novamente...');
-      setTimeout(setupEventListeners, 500);
-    }
-  }
-
-  window.addEventListener('message', function(event) {
-    console.log('[VTURB] PostMessage recebido:', event.data);
-
-    if (event.data && typeof event.data === 'string') {
-      var lower = event.data.toLowerCase();
-      if (lower.includes('call') || lower.includes('action') || lower.includes('button') || lower.includes('cta')) {
-        console.log('[VTURB] Mensagem relevante detectada!');
-        showCTA();
-      }
-    } else if (event.data && typeof event.data === 'object') {
-      var str = JSON.stringify(event.data).toLowerCase();
-      if (str.includes('call') || str.includes('action') || str.includes('button') || str.includes('cta')) {
-        console.log('[VTURB] Mensagem relevante detectada (objeto)!');
-        showCTA();
-      }
+      ctaButton.href = currentUrl.toString();
     }
   });
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('[VTURB] DOM carregado');
-
-      var ctaButton = document.getElementById('cta-button');
-      if (ctaButton) {
-        var currentUrl = new URL(ctaButton.href);
-        var pageParams = new URLSearchParams(window.location.search);
-        pageParams.forEach(function(value, key) {
-          currentUrl.searchParams.set(key, value);
-        });
-        ctaButton.href = currentUrl.toString();
-      }
-
-      setupEventListeners();
-    });
-  } else {
-    console.log('[VTURB] DOM já carregado');
-    setupEventListeners();
-  }
 })();
 </script><script>var back_redirect_back_link="https://mindinfonow.online/brdrmw/"+location.search;history.pushState({},"",location.href),history.pushState({},"",location.href),window.addEventListener("popstate",(function(t){t.state&&setTimeout((function(){location.href=back_redirect_back_link}),1)}),!1);</script><script>document.addEventListener("DOMContentLoaded",(()=>{document.querySelectorAll("a").forEach((e=>{e.getAttribute("href")?.includes("#")||(e.getAttribute("href")?.includes("?")?e.setAttribute("href",e.getAttribute("href")+window.location.search.replace("?","&")):e.getAttribute("href")?e.setAttribute("href",e.getAttribute("href")+window.location.search):"")}))}));</script><script type="text/javascript" defer="defer">document.body.appendChild(Object.assign(document.createElement("script"), {src: "https://cdn.atomicatpages.net/cdn/atomicpixel.js?cache=" + Date.now(),async: true,defer: true}));</script><script type="text/javascript" defer="defer">document.body.appendChild(Object.assign(document.createElement("script"), {src: "https://cdn.atomicatpages.net/cdn/a.js?cache=" + Date.now(),async: true,defer: true}));</script></body></html>
