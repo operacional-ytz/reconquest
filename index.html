@@ -10,30 +10,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   var ctaShown = false;
   var originalLog = console.log;
   var originalWarn = console.warn;
+  var originalError = console.error;
 
   function showCTA() {
     if (ctaShown) return;
     ctaShown = true;
 
+    originalLog('[VTURB SYNC] Exibindo oferta...');
     var ctaElement = document.querySelector('.dtc');
     if (ctaElement) {
       ctaElement.classList.add('show');
+      originalLog('[VTURB SYNC] Oferta exibida com sucesso');
 
       setTimeout(function() {
         var scrollTarget = document.querySelector('.smartplayer-scroll-event');
         if (scrollTarget) {
+          originalLog('[VTURB SYNC] Fazendo scroll para o botão');
           scrollTarget.scrollIntoView({
             behavior: 'smooth',
             block: 'center'
           });
         }
       }, 300);
+    } else {
+      originalLog('[VTURB SYNC] ERRO: Elemento .dtc não encontrado');
     }
   }
 
   function checkMessage(args) {
     var message = Array.prototype.slice.call(args).join(' ');
-    if (message.includes('PlaybackController') && message.includes('no call action button found')) {
+
+    if (message.toLowerCase().includes('playback') ||
+        message.toLowerCase().includes('call action') ||
+        (message.toLowerCase().includes('no') && message.toLowerCase().includes('button'))) {
+      originalLog('[VTURB SYNC] Mensagem relevante detectada:', message);
       showCTA();
     }
   }
@@ -48,11 +58,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     originalWarn.apply(console, arguments);
   };
 
-  console.error = function() {};
+  console.error = function() {
+    checkMessage(arguments);
+    originalError.apply(console, arguments);
+  };
+
   console.info = function() {};
   console.debug = function() {};
 
+  originalLog('[VTURB SYNC] Sistema de interceptação inicializado');
+
   document.addEventListener('DOMContentLoaded', function() {
+    originalLog('[VTURB SYNC] DOM carregado');
+    var ctaElement = document.querySelector('.dtc');
+    if (ctaElement) {
+      originalLog('[VTURB SYNC] Elemento .dtc encontrado no DOM');
+    } else {
+      originalLog('[VTURB SYNC] AVISO: Elemento .dtc não encontrado');
+    }
+
     var ctaButton = document.getElementById('cta-button');
     if (ctaButton) {
       var currentUrl = new URL(ctaButton.href);
